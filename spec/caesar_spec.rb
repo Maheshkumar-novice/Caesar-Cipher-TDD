@@ -43,7 +43,7 @@ describe CaesarCipher do
         end
       end
 
-      context 'when the key is large negative' do
+      context 'when the key is very small negative' do
         let(:key) { -5683 } 
 
         it "returns 'spwwz hzcwo'" do
