@@ -44,7 +44,7 @@ describe CaesarCipher do
       end
 
       context 'when the key is very small negative' do
-        let(:key) { -5683 } 
+        let(:key) { -5683 }
 
         it "returns 'spwwz hzcwo'" do
           expect(cipher).to eq('spwwz hzcwo')
