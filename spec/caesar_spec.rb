@@ -8,10 +8,54 @@ describe CaesarCipher do
   describe '#caesar_cipher' do
     let(:cipher) { subject.caesar_cipher(text, key) }
 
+    context 'when the key is of different ranges' do
+      let(:text) { 'hello world' }
+
+      context 'when the key is small positive' do
+        let(:key) { 3 }
+
+        it "returns 'khoor zruog'" do
+          expect(cipher).to eq('khoor zruog')
+        end
+      end
+
+      context 'when the key is large positive' do
+        let(:key) { 3433 }
+
+        it "returns 'ifmmp xpsme'" do
+          expect(cipher).to eq('ifmmp xpsme')
+        end
+      end
+
+      context 'when the key is 0' do
+        let(:key) { 0 }
+
+        it "returns 'hello world'" do
+          expect(cipher).to eq('hello world')
+        end
+      end
+
+      context 'when the key is small negative' do
+        let(:key) { -4 }
+
+        it "returns 'dahhk sknhz'" do
+          expect(cipher).to eq('dahhk sknhz')
+        end
+      end
+
+      context 'when the key is large negative' do
+        let(:key) { -5683 } 
+
+        it "returns 'spwwz hzcwo'" do
+          expect(cipher).to eq('spwwz hzcwo')
+        end
+      end
+    end
+
     context 'when the text is lower-case' do
       let(:text) { 'hello world' }
 
-      context 'when the key is 5' do
+      context 'when the key is positive' do
         let(:key) { 5 }
 
         it "returns 'mjqqt btwqi'" do
@@ -19,7 +63,7 @@ describe CaesarCipher do
         end
       end
 
-      context 'when the key is -5' do
+      context 'when the key is negative' do
         let(:key) { -5 }
 
         it "returns 'czggj rjmgy'" do
@@ -31,7 +75,7 @@ describe CaesarCipher do
     context 'when the text is upper-case' do
       let(:text) { 'HELLO WORLD' }
 
-      context 'when the key is 5' do
+      context 'when the key is positive' do
         let(:key) { 5 }
 
         it "returns 'MJQQT BTWQI'" do
@@ -39,7 +83,7 @@ describe CaesarCipher do
         end
       end
 
-      context 'when the key is -5' do
+      context 'when the key is negative' do
         let(:key) { -5 }
 
         it "returns 'CZGGJ RJMGY'" do
@@ -51,7 +95,7 @@ describe CaesarCipher do
     context 'when the text is mixed-case' do
       let(:text) { 'Hello WoRLd' }
 
-      context 'when the key is 5' do
+      context 'when the key is positive' do
         let(:key) { 5 }
 
         it "returns 'Mjqqt BtWQi'" do
@@ -59,7 +103,7 @@ describe CaesarCipher do
         end
       end
 
-      context 'when the key is -5' do
+      context 'when the key is negative' do
         let(:key) { -5 }
 
         it "returns 'Czggj RjMGy'" do
@@ -72,7 +116,7 @@ describe CaesarCipher do
       context 'when the text is mixed with numbers' do
         let(:text) { 'H3110 W0R16' }
 
-        context 'when the key is 5' do
+        context 'when the key is positive' do
           let(:key) { 5 }
 
           it "returns 'M3110 B0W16'" do
@@ -80,7 +124,7 @@ describe CaesarCipher do
           end
         end
 
-        context 'when the key is -5' do
+        context 'when the key is negative' do
           let(:key) { -5 }
 
           it "returns 'C3110 R0M16'" do
@@ -92,7 +136,7 @@ describe CaesarCipher do
       context 'when the text is full of numbers' do
         let(:text) { '111343111' }
 
-        context 'when the key is 5' do
+        context 'when the key is positive' do
           let(:key) { 5 }
 
           it "returns '111343111'" do
@@ -100,7 +144,7 @@ describe CaesarCipher do
           end
         end
 
-        context 'when the key is -5' do
+        context 'when the key is negative' do
           let(:key) { -5 }
 
           it "returns '111343111'" do
@@ -114,7 +158,7 @@ describe CaesarCipher do
       context 'when the text is mixed with special characters' do
         let(:text) { 'H))$$ W!R))' }
 
-        context 'when the key is 5' do
+        context 'when the key is positive' do
           let(:key) { 5 }
 
           it "returns 'M))$$ B!W))'" do
@@ -122,7 +166,7 @@ describe CaesarCipher do
           end
         end
 
-        context 'when the key is -5' do
+        context 'when the key is negative' do
           let(:key) { -5 }
 
           it "returns 'C))$$ R!M))'" do
@@ -134,7 +178,7 @@ describe CaesarCipher do
       context 'when the text is full of special characters' do
         let(:text) { '(){}$-.* ^%@' }
 
-        context 'when the key is 5' do
+        context 'when the key is positive' do
           let(:key) { 5 }
 
           it "returns '(){}$-.* ^%@'" do
@@ -142,7 +186,7 @@ describe CaesarCipher do
           end
         end
 
-        context 'when the key is -5' do
+        context 'when the key is negative' do
           let(:key) { -5 }
 
           it "returns '(){}$-.* ^%@'" do
